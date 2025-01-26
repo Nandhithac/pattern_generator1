@@ -1,0 +1,27 @@
+class pattern_generator;
+  rand bit[9:0] pattern;
+  constraint c1{
+    pattern[9]==0;
+    pattern[8]==1;
+    pattern[7]==0;
+    pattern[6]==1;
+    pattern[5]==0;
+    pattern[4]==1;
+    pattern[3]==0;
+    pattern[2]==1;
+    pattern[1]==0;
+    pattern[0]==1;
+  }
+endclass
+module pat_gen_tb;
+  bit[9:0] pattern;
+  initial
+    begin
+      pattern_generator generator=new();
+      generator.randomize();
+      pattern=generator.pattern;
+      $display("pattern = %b",pattern);
+      #20;
+      $finish;
+    end
+endmodule
